@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:haptic_feedback/haptic_feedback.dart';
 import 'package:intl/intl.dart';
 import 'package:orderapp/main.dart';
 import 'package:page_transition/page_transition.dart';
 
 class Helper {
   static String? paymentMode = "Google Pay";
+  static String? firmType = "Intel Banglore SRR4A";
   static GlobalKey key = NavigationService.navigatorKey;
 
   static DateTime? orderDate = DateTime.now();
@@ -107,7 +109,7 @@ class Helper {
         SnackBar(duration: const Duration(seconds: 5), content: Text(text!)));
   }
 
-  static setDateFormat({String? format, DateTime? dateTime}) {
+  static String setDateFormat({String? format, DateTime? dateTime}) {
     return DateFormat(format ?? "yyyy-MM-dd")
         .format(dateTime ?? DateTime.now());
   }
@@ -115,4 +117,26 @@ class Helper {
   static setPaymentMode(value) {
     paymentMode = value;
   }
+    static setFirmType(value) {
+    firmType = value;
+  }
+
+    static Future<void> hapticSuccess() async =>
+      await Haptics.vibrate(HapticsType.success);
+  static Future<void> hapticWarning() async =>
+      await Haptics.vibrate(HapticsType.warning);
+  static Future<void> hapticerror() async =>
+      await Haptics.vibrate(HapticsType.error);
+  static Future<void> hapticlight() async =>
+      await Haptics.vibrate(HapticsType.light);
+  static Future<void> hapticmedium() async =>
+      await Haptics.vibrate(HapticsType.medium);
+  static Future<void> hapticheavy() async =>
+      await Haptics.vibrate(HapticsType.heavy);
+  static Future<void> hapticrigid() async =>
+      await Haptics.vibrate(HapticsType.rigid);
+  static Future<void> hapticsoft() async =>
+      await Haptics.vibrate(HapticsType.soft);
+  static Future<void> hapticselection() async =>
+      await Haptics.vibrate(HapticsType.selection);
 }
